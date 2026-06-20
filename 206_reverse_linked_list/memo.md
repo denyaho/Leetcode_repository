@@ -32,6 +32,7 @@ class Solution:
         return prev
 ```
 
+
 ## step2（整形＆他の人のコードを読む）
 
 他の人も同様なコードを利用していた

@@ -19,3 +19,5 @@ class Solution:
             node = next_node
 
         return reversed_head
+    
+    

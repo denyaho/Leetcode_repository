@@ -17,6 +17,7 @@
 # 4. prevを返す
 
 
+
 from typing import Optional
 
 # Definition for singly-linked list.
