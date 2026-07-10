@@ -1,0 +1,44 @@
+
+自分の力で解けなかった場合に、step1では何を考え実装しようとしたかをメモする
+
+問題概要
+
+82. Remove Duplicates from Sorted List 2
+https://leetcode.com/problems/remove-duplicates-from-sorted-list-ii/
+
+
+解く際に何を考えたか
+
+１、重複している要素を削除したノードのみでLinked listを作成する必要があるので、
+　新たにdistinct_linked_listといった連結リストを作成する必要がある
+
+２、distinct_linked_listは重複しないノードのみで成り立つので、重複しないノードをリストで保持して、
+　後々全てを繋げれば良いでのではないかと考えた。
+
+class Solution:
+
+    def deleteDuplicates(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        distinct_list = []
+
+        node = head
+
+        while node and node.next:
+            if node.val != node.next.val:
+                distinct_list.append(node)
+            node = node.next
+        
+        distinct_linked_list = distinct_list[0]
+        for i in range(1,len(distinct_list)):
+            distinct_linked_list.next = distinct_list[i]
+            distinct_linked_list = distince_linked_list.next
+        distinct_linked_list.next = None
+        return distinct_linked_list
+
+
+問題点
+１、まず、重複要素の探し方として、現在のノードと隣のノードの値のみを比較しているので、
+　1 1 2　といった並びの場合に、最初の1と次の1の重複は検知できるが、1 2となった時に１をリストに入れてしまうので
+　成り立っていない
+２、リストで保持したnodeは元々のnextポインタを保持しているので、このままただ繋ぎかえるだけでは
+　distinct_linked_listは現在のnodeしか返さない。
+　そのため、distinct_linked_listの先頭を保持するnodeを作成しておかないといけない。
